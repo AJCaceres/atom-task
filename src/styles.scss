@@ -1,1 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
+@import "assets/styles/theme";
+
+
+html, body { height: 100%; }
+body { margin: 0; }
+body {
+    font-family: 'Poppins', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600; /* Pesado para títulos */
+}
+  
+p, li, input, button {
+    font-weight: 400; /* Regular para el texto general */
+}
+
+.input-field{
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+.w-100{
+    width: 100%;
+}
+.align-center{
+    text-align: center;
+}
+.txt-white{
+    color: white !important;
+}
+.input{
+    border-radius: 10px;
+    border: 1px solid black;
+    height: 42px;
+}
+@media (max-width: 650px) {
+
+    .btn-mobile{
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }    
+
+}
+

@@ -5,7 +5,9 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "strict": true, // Asegura una tipificación estricta, ayuda a prevenir estos problemas
+    "skipLibCheck": true, // Esto ignora los chequeos de tipado en las bibliotecas de terceros
+    "noImplicitAny": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,

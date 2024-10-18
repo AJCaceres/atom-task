@@ -1,0 +1,36 @@
+<app-header></app-header>
+<div class="task-list-container">
+    <div class="container">
+        <h2 *ngIf="!showForm">Lista de Tareas</h2>
+        <h2 *ngIf="showForm">Crear tarea</h2>
+        <button *ngIf="!showForm" class="btn btn-primary btn-mobile" (click)="onCreate()">Crear Tarea</button>
+    
+        <div class="mt-3" *ngIf="tasks$ | async as tasks; else noTasks">
+            <div *ngIf="tasks.length > 0 && !showForm; else noTasks">
+                <div *ngFor="let task of tasks$ | async" class="task-card">
+                <h4>{{ task.title }}</h4>
+                <p>{{ task.description }}</p>
+                <p><strong>Fecha de creación:</strong> {{ task.createdDate.toDate() | date }}</p>
+                <p><strong>Estado:</strong> {{ task.status == 'pending' ? 'Pendiente' : 'Finalizada'  }}</p>
+                <div class="d-flex gap-10">
+                    <button mat-mini-fab color="accent" class="btn" (click)="onEdit(task)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-mini-fab color="warn" class="btn" (click)="onDelete(task)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+                </div>
+            </div>
+        </div>
+    
+        <ng-template #noTasks>
+            <div class="m-3">
+                <p *ngIf="!showForm">No hay tareas disponibles.</p>
+            </div>
+        </ng-template>
+    
+        <app-task-form *ngIf="showForm" [taskToEdit]="taskToEdit" (closeForm)="onFormClose()"></app-task-form>
+    </div>
+  </div>
+  

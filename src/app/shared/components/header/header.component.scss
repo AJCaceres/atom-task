@@ -1,0 +1,22 @@
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+  
+.logo img {
+    height: 40px;
+}
+  
+.user-icon {
+    button {
+        mat-icon {
+          font-size: 24px;
+          color: #555;
+        }
+      }
+    }
+}
+  

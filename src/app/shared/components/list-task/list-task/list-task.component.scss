@@ -1,0 +1,25 @@
+.task-list-container{
+    padding: 30px;
+}
+.container {
+    max-width: 750px; /* Tamaño máximo para el contenido en pantallas grandes */
+    margin: 0 auto; /* Centramos el contenido horizontalmente */
+}
+.task-card{
+    border: solid 1px grey;
+    padding: 12px;
+    border-radius: 12px;
+    margin: 10px 0;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+.gap-10{
+    gap:10px;
+}
+  
+  /* Para pantallas más pequeñas (menores a 650px) */
+@media (max-width: 650px) {
+    .container {
+        max-width: 100%; /* Que ocupe todo el ancho */
+        padding: 0 10px; /* Añadimos algo de padding a los lados */
+    }
+}
