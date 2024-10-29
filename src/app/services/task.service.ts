@@ -56,9 +56,7 @@ export class TaskService {
   }
 
   // Método para eliminar una tarea
-  deleteTask(id: string) {
-    console.log("task a eliminar", id);
-    
+  deleteTask(id: string) {    
     return this.tasksCollection.doc(id).delete();
   }
 }

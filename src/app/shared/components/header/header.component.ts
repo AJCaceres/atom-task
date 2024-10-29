@@ -24,9 +24,7 @@ export class HeaderComponent {
       confirmButtonText: 'Cerrar sesión',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
-      if (result.isConfirmed) {
-        console.log("logout");
-        
+      if (result.isConfirmed) {        
         this.authService.logout()
       }
     });

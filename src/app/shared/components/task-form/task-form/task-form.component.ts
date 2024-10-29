@@ -20,8 +20,8 @@ export class TaskFormComponent implements OnChanges {
 
   constructor(private fb: FormBuilder, private authService: AuthService, private taskService: TaskService) {
     this.taskForm = this.fb.group({
-      title: ['', Validators.required],
-      description: [''],
+      title: ['', [Validators.required, Validators.maxLength(150)]],
+      description: ['', [Validators.maxLength(400)]],
       status: ['pending'], // Valor por defecto
     });
     
@@ -30,7 +30,6 @@ export class TaskFormComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['taskToEdit'] && this.taskToEdit) {
       this.taskForm.patchValue(this.taskToEdit); // Actualiza el formulario con los nuevos valores
-      console.log('Tarea a editar:', this.taskToEdit);
     }
   }
 
@@ -51,7 +50,6 @@ export class TaskFormComponent implements OnChanges {
   private createTask(task: Task) {
     this.taskService.addTask(task)
       .then(() => {
-        console.log('Tarea Creada:', task);
         Swal.fire({
           icon: 'success',
           title: 'Tarea creada!',
@@ -65,10 +63,8 @@ export class TaskFormComponent implements OnChanges {
   }
 
   private updateTask(task: Task) {
-    console.log("update ", task);
     this.taskService.updateTask(task.id, task)
       .then(() => {
-        console.log('Tarea actualizada:', task);
         Swal.fire({
           icon: 'success',
           title: 'Tarea actualizada!',

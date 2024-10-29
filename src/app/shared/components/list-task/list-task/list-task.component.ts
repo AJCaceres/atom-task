@@ -50,23 +50,38 @@ export class ListTaskComponent implements OnInit {
   }
   // Metodo de eliminar la tarea
   onDelete(task:Task){
-    console.log("Tarea a eliminar: ", task);
-    this.taskService.deleteTask(task.id)
-    .then(() => {
-      console.log('Tarea eliminada:', task);
-      Swal.fire({
-        icon: 'success',
-        title: 'Tarea eliminada!',
-        text: 'La tarea ha sido eliminada con éxito.',
-      });
-    })
-    .catch(error => {
-      console.error('Error al eliminar la tarea:', error);
+
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "Esta acción eliminará la tarea de forma permanente.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.taskService.deleteTask(task.id)
+          .then(() => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Tarea eliminada!',
+              text: 'La tarea ha sido eliminada con éxito.',
+            });
+          })
+          .catch(error => {
+            Swal.fire(
+              'Error',
+              'Hubo un problema al eliminar la tarea.',
+              'error'
+            );
+          });
+      }
     });
   }
   // Metodo de edicion de una tarea
   onEdit(task: Task) {
-    console.log("tarea seleccionada: ", task);
     this.taskToEdit = task;
     this.showForm = true; // Mostrar el formulario
   }

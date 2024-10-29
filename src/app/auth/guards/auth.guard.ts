@@ -10,11 +10,9 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): boolean {
     if (this.authService.isLoggedIn()) {
-        console.log("ESTA LOGGEADO");
         
       return true;
     } else {
-      console.log("NOOOO ESTA LOGGEADO");
       this.router.navigate(['/login']);
       return false;
     }

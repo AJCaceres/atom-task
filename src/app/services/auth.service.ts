@@ -40,11 +40,9 @@ export class AuthService {
 
   async confirmSignIn(url: string): Promise<void> {
     const isSignInWithEmailLink = await this.afAuth.isSignInWithEmailLink(url);
-    console.log('Is Sign In with Email Link:', isSignInWithEmailLink);
 
     if (isSignInWithEmailLink) {
       const email = window.localStorage.getItem('emailForSignIn') || '';
-      console.log('Email para inicio de sesión:', email);
 
       try {
         const userCredential = await this.afAuth.signInWithEmailLink(email, url);
@@ -54,7 +52,6 @@ export class AuthService {
           localStorage.setItem('token', user.uid); 
         }
         window.localStorage.removeItem('emailForSignIn');
-        console.log('Inicio de sesión exitoso', user);
         this.userSubject.next(user); // Actualiza el estado del usuario
         this.router.navigate(['/main']); // Redirige al usuario a la página principal
       } catch (error) {
